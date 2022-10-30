@@ -65,7 +65,6 @@ export const StartPage = () => {
                     playerName={player.playerName}
                     position={player.position}
                     status={player.status}
-                    isAuth={true}
                   />
                 </Grid>
               ))}

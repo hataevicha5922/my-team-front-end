@@ -5,8 +5,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { selectIsAuth } from '../../redux/slices/auth';
+import { useSelector } from 'react-redux';
 
-const TeamCard = ({ teamName, city, owner, isAuth }) => {
+const TeamCard = ({ teamName, city, owner }) => {
+  const isAuth = useSelector(selectIsAuth);
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
