@@ -6,10 +6,7 @@ export const fetchAuth = createAsyncThunk(
   async (params, { rejectWithValue }) => {
     try {
       const response = await axios.post('/auth/login', params);
-      console.log(response);
-      if (response.statusText !== 'OK') {
-        throw new Error('Server Error');
-      }
+
       const { data } = response;
       return data;
     } catch (error) {
@@ -75,7 +72,7 @@ const authSlice = createSlice({
       state.status = 'loaded';
     },
     [fetchAuth.rejected]: (state, action) => {
-      state.data = [];
+      state.data = null;
       state.status = 'error';
     },
     [fetchAuthMe.pending]: (state) => {
@@ -87,7 +84,7 @@ const authSlice = createSlice({
       state.status = 'loaded';
     },
     [fetchAuthMe.rejected]: (state, action) => {
-      state.data = [];
+      state.data = null;
       state.status = 'error';
     },
     [fetchRegister.pending]: (state) => {
@@ -99,7 +96,7 @@ const authSlice = createSlice({
       state.status = 'loaded';
     },
     [fetchRegister.rejected]: (state, action) => {
-      state.data = [];
+      state.data = null;
       state.status = 'error';
     },
   },

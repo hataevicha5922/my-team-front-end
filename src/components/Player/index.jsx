@@ -9,10 +9,10 @@ import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 
 import styles from './Post.module.scss';
 import { UserInfo } from '../UserInfo';
-import { PostSkeleton } from './Skeleton';
+import { PlayerSkeleton } from './Skeleton';
 
-export const Post = ({
-  _id,
+export const Player = ({
+  id,
   title,
   createdAt,
   imageUrl,
@@ -21,21 +21,21 @@ export const Post = ({
   commentsCount,
   tags,
   children,
-  isFullPost,
+  isFullPlayer,
   isLoading,
   isEditable,
 }) => {
   if (isLoading) {
-    return <PostSkeleton />;
+    return <PlayerSkeleton />;
   }
 
   const onClickRemove = () => {};
 
   return (
-    <div className={clsx(styles.root, { [styles.rootFull]: isFullPost })}>
+    <div className={clsx(styles.root, { [styles.rootFull]: isFullPlayer })}>
       {isEditable && (
         <div className={styles.editButtons}>
-          <Link to={`/posts/${_id}/edit`}>
+          <Link to={`/players/${id}/edit`}>
             <IconButton color="primary">
               <EditIcon />
             </IconButton>
@@ -47,7 +47,7 @@ export const Post = ({
       )}
       {imageUrl && (
         <img
-          className={clsx(styles.image, { [styles.imageFull]: isFullPost })}
+          className={clsx(styles.image, { [styles.imageFull]: isFullPlayer })}
           src={imageUrl}
           alt={title}
         />
@@ -56,9 +56,9 @@ export const Post = ({
         <UserInfo {...user} additionalText={createdAt} />
         <div className={styles.indention}>
           <h2
-            className={clsx(styles.title, { [styles.titleFull]: isFullPost })}
+            className={clsx(styles.title, { [styles.titleFull]: isFullPlayer })}
           >
-            {isFullPost ? title : <Link to={`/posts/${_id}`}>{title}</Link>}
+            {isFullPlayer ? title : <Link to={`/player/${id}`}>{title}</Link>}
           </h2>
           <ul className={styles.tags}>
             <li>

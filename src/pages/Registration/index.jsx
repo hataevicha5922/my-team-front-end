@@ -28,11 +28,9 @@ export const Registration = () => {
   });
   const onSubmit = async (values) => {
     const data = await dispatch(fetchRegister(values));
-    if (!data.payload) {
-      alert('You are not auth!');
-    }
-    if ('token' in data.payload) {
-      window.localStorage.setItem('token', data.payload.token);
+
+    if ('accessToken' in data.payload) {
+      window.localStorage.setItem('token', data.payload.accessToken);
     }
   };
 
@@ -70,9 +68,19 @@ export const Registration = () => {
         <TextField
           className={styles.field}
           type="password"
+          {...register('password', {
+            required: 'Password is required',
+            minLength: {
+              value: 5,
+              message: 'Min 5 characters',
+            },
+            maxLength: {
+              value: 15,
+              message: 'Max 15 characters',
+            },
+          })}
           error={Boolean(errors.password ? `${errors.password.message}` : null)}
           helperText={errors.password ? `${errors.password.message}` : null}
-          {...register('password', { required: 'Password is required' })}
           label="Password"
           fullWidth
         />

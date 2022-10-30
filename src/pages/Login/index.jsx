@@ -27,11 +27,12 @@ export const Login = () => {
 
   const onSubmit = async (values) => {
     const data = await dispatch(fetchAuth(values));
-    if (!data.payload) {
+    console.log(data.payload);
+    if (data.error) {
       alert('You are not auth!');
     }
-    if ('token' in data.payload) {
-      window.localStorage.setItem('token', data.payload.token);
+    if ('accessToken' in data.payload) {
+      window.localStorage.setItem('token', data.payload.accessToken);
     }
   };
 
@@ -60,7 +61,17 @@ export const Login = () => {
           type="password"
           error={Boolean(errors.password ? `${errors.password.message}` : null)}
           helperText={errors.password ? `${errors.password.message}` : null}
-          {...register('password', { required: 'Password is required' })}
+          {...register('password', {
+            required: 'Password is required',
+            minLength: {
+              value: 5,
+              message: 'Min 5 characters',
+            },
+            maxLength: {
+              value: 15,
+              message: 'Max 15 characters',
+            },
+          })}
           fullWidth
         />
         <Button
@@ -70,7 +81,7 @@ export const Login = () => {
           variant="contained"
           fullWidth
         >
-          Войти
+          LogIn
         </Button>
       </form>
     </Paper>
