@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+
 import Grid from '@mui/material/Grid';
 
-import { Post } from '../components/Post';
-import { TagsBlock } from '../components/TagsBlock';
-import { CommentsBlock } from '../components/CommentsBlock';
-import { fetchPlayers, fetchPosition } from '../redux/slices/players';
+import { Player } from '../../components/Player';
+import { TagsBlock } from '../../components/TagsBlock';
+import { CommentsBlock } from '../../components/CommentsBlock';
+import { fetchPlayers, fetchPosition } from '../../redux/slices/players';
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -22,23 +21,15 @@ export const Home = () => {
 
   return (
     <>
-      <Tabs
-        style={{ marginBottom: 15 }}
-        value={0}
-        aria-label="basic tabs example"
-      >
-        <Tab label="New" />
-        <Tab label="Famous" />
-      </Tabs>
       <Grid container spacing={4}>
         <Grid xs={8} item>
           {(isPlayersLoading ? [...Array(5)] : players.items).map(
             (obj, index) =>
               isPlayersLoading ? (
-                <Post key={index} isLoading={true} />
+                <Player key={index} isLoading={true} />
               ) : (
-                <Post
-                  id={1}
+                <Player
+                  id={obj.id}
                   title={obj.playerName}
                   imageUrl="https://res.cloudinary.com/practicaldev/image/fetch/s--UnAfrEG8--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/icohm5g0axh9wjmu4oc3.png"
                   user={{
