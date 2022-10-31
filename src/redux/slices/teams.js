@@ -15,6 +15,20 @@ export const fetchAllTeams = createAsyncThunk(
   }
 );
 
+export const fetchTeamInfo = createAsyncThunk(
+  'team/fetchTeamInfo',
+  async (params, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(`/teams/${params}`, { id: params });
+
+      const { data } = response;
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const fetchCreateTeam = createAsyncThunk(
   'team/fetchCreateTeam',
   async (params, { rejectWithValue }) => {
@@ -37,8 +51,14 @@ export const fetchCreateTeam = createAsyncThunk(
 );
 
 const initialState = {
-  teams: null,
-  status: 'loading',
+  teams: {
+    items: null,
+    status: 'loading',
+  },
+  team: {
+    item: null,
+    status: 'loading',
+  },
 };
 
 const teamSlice = createSlice({
@@ -47,32 +67,42 @@ const teamSlice = createSlice({
   reducers: {},
   extraReducers: {
     [fetchAllTeams.pending]: (state) => {
-      state.status = 'loading';
-      state.teams = null;
+      state.teams.status = 'loading';
+      state.teams.items = null;
     },
     [fetchAllTeams.fulfilled]: (state, action) => {
-      state.teams = action.payload;
-      state.status = 'loaded';
+      state.teams.items = action.payload;
+      state.teams.status = 'loaded';
     },
     [fetchAllTeams.rejected]: (state, action) => {
-      state.teams = null;
-      state.status = 'error';
+      state.teams.items = null;
+      state.teams.status = 'error';
     },
     [fetchCreateTeam.pending]: (state) => {
-      state.status = 'loading';
-      state.teams = null;
+      state.teams.team.status = 'loading';
+      state.teams.team.item = null;
     },
     [fetchCreateTeam.fulfilled]: (state, action) => {
-      state.teams = action.payload;
-      state.status = 'loaded';
+      state.teams.team.item = action.payload;
+      state.teams.team.status = 'loaded';
     },
     [fetchCreateTeam.rejected]: (state, action) => {
-      state.teams = null;
-      state.status = 'error';
+      state.teams.team.item = null;
+      state.teams.team.status = 'error';
+    },
+    [fetchTeamInfo.pending]: (state) => {
+      state.teams.team.status = 'loading';
+      state.teams.team.item = null;
+    },
+    [fetchTeamInfo.fulfilled]: (state, action) => {
+      state.teams.team.item = action.payload;
+      state.teams.team.status = 'loaded';
+    },
+    [fetchTeamInfo.rejected]: (state, action) => {
+      state.teams.team.item = null;
+      state.teams.team.status = 'error';
     },
   },
 });
-
-// export const selectIsAuth = (state) => Boolean(state.auth.data);
 
 export const teamReducer = teamSlice.reducer;

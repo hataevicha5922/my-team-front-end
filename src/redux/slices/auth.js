@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { Navigate } from 'react-router-dom';
 import axios from '../../axios';
 
 export const fetchAuth = createAsyncThunk(
@@ -9,6 +8,7 @@ export const fetchAuth = createAsyncThunk(
       const response = await axios.post('/auth/login', params);
 
       const { data } = response;
+      console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -38,7 +38,6 @@ export const fetchAuthMe = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get('/auth/me');
-      console.log(response);
       if (response.statusText !== 'OK') {
         throw new Error('Server Error');
       }

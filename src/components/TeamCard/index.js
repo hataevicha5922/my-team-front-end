@@ -7,9 +7,12 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { selectIsAuth } from '../../redux/slices/auth';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-const TeamCard = ({ teamName, city, owner }) => {
+const TeamCard = ({ teamName, city, owner, id }) => {
   const isAuth = useSelector(selectIsAuth);
+  const navigate = useNavigate();
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -30,7 +33,11 @@ const TeamCard = ({ teamName, city, owner }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button disabled={!isAuth} size="small">
+        <Button
+          disabled={!isAuth}
+          size="small"
+          onClick={() => navigate(`/team/${id}`)}
+        >
           Show
         </Button>
         <Button disabled={!isAuth} size="small">

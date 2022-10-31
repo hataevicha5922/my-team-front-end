@@ -7,6 +7,7 @@ import {
   StartPage,
   Home,
   FullPlayer,
+  FullTeam,
   Registration,
   AddPost,
   Login,
@@ -20,8 +21,6 @@ function App() {
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
 
-  console.log(isAuth);
-
   useEffect(() => {
     dispatch(fetchAuthMe());
   }, []);
@@ -34,6 +33,7 @@ function App() {
           <Route path="/" element={<StartPage />} />
           <Route path="/home" element={<Home />} />
           <Route path="/player/:id" element={<FullPlayer />} />
+          <Route path="/team/:id" element={<FullTeam />} />
           <Route path="/add-post" element={<AddPost />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Registration />} />
