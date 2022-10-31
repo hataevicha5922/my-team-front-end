@@ -15,7 +15,7 @@ export const StartPage = () => {
   const [value, setValue] = useState('1');
   const dispatch = useDispatch();
   const { players, positions } = useSelector((state) => state.players);
-  const { teams, status } = useSelector((state) => state.teams);
+  const { items, status } = useSelector((state) => state.teams.teams);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -29,7 +29,7 @@ export const StartPage = () => {
   if (status === 'loading') {
     return <h1>Wait</h1>;
   }
-  console.log(teams);
+  console.log(items);
   console.log(players);
   return (
     <>
@@ -45,12 +45,13 @@ export const StartPage = () => {
             {' '}
             <Typography variant="h2">Teams</Typography>
             <Grid container spacing={3}>
-              {teams.map((team) => (
+              {items.map((team) => (
                 <Grid item key={team.id} xs={12} sm={6} md={3} lg={2}>
                   <TeamCard
                     teamName={team.teamName}
                     city={team.city}
                     owner={team.owner}
+                    id={team.id}
                   />
                 </Grid>
               ))}
