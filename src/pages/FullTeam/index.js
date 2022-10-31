@@ -4,12 +4,10 @@ import { useParams } from 'react-router-dom';
 import { Player } from '../../components/Player';
 import { Index } from '../../components/AddComment';
 import { CommentsBlock } from '../../components/CommentsBlock';
-import axios from '../../axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTeamInfo } from '../../redux/slices/teams';
 
 export const FullTeam = () => {
-  const [data, setData] = useState();
   const [isLoading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const { id } = useParams();

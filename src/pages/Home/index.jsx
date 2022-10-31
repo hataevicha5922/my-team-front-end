@@ -17,7 +17,7 @@ export const Home = () => {
   useEffect(() => {
     dispatch(fetchPlayers());
     dispatch(fetchPosition());
-  }, [dispatch]);
+  }, []);
 
   return (
     <>

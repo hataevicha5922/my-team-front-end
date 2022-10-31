@@ -9,16 +9,6 @@ import axios from '../../axios';
 export const FullPlayer = () => {
   const [data, setData] = useState();
   const [isLoading, setLoading] = useState(true);
-  const { id } = useParams();
-
-  // useEffect(() => {
-  // axios
-  //   .get(`/players/byId/${id}`)
-  //   .then((res) => {
-  //     console.log(res);
-  // })
-  //     .catch((error) => alert(error));
-  // }, []);
 
   if (isLoading) {
     return <Player isLoading={isLoading} />;

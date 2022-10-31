@@ -29,8 +29,7 @@ export const StartPage = () => {
   if (status === 'loading') {
     return <h1>Wait</h1>;
   }
-  console.log(items);
-  console.log(players);
+
   return (
     <>
       <Box sx={{ width: '100%', typography: 'body1' }}>

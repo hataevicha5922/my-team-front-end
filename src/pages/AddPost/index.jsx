@@ -31,7 +31,7 @@ export const AddPost = () => {
         delay: 1000,
       },
     }),
-    [],
+    []
   );
 
   return (
@@ -46,7 +46,11 @@ export const AddPost = () => {
         </Button>
       )}
       {imageUrl && (
-        <img className={styles.image} src={`http://localhost:4444${imageUrl}`} alt="Uploaded" />
+        <img
+          className={styles.image}
+          src={`http://localhost:5000${imageUrl}`}
+          alt="Uploaded"
+        />
       )}
       <br />
       <br />
@@ -56,8 +60,18 @@ export const AddPost = () => {
         placeholder="Заголовок статьи..."
         fullWidth
       />
-      <TextField classes={{ root: styles.tags }} variant="standard" placeholder="Тэги" fullWidth />
-      <SimpleMDE className={styles.editor} value={value} onChange={onChange} options={options} />
+      <TextField
+        classes={{ root: styles.tags }}
+        variant="standard"
+        placeholder="Тэги"
+        fullWidth
+      />
+      <SimpleMDE
+        className={styles.editor}
+        value={value}
+        onChange={onChange}
+        options={options}
+      />
       <div className={styles.buttons}>
         <Button size="large" variant="contained">
           Опубликовать

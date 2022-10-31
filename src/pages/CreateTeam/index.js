@@ -5,10 +5,9 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 
 import styles from './CreateTeam.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchCreateTeam } from '../../redux/slices/teams';
 import { useForm } from 'react-hook-form';
-// import { Navigate } from 'react-router-dom';
 
 export const CreateTeam = () => {
   const dispatch = useDispatch();

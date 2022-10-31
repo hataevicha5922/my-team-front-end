@@ -8,7 +8,6 @@ export const fetchAuth = createAsyncThunk(
       const response = await axios.post('/auth/login', params);
 
       const { data } = response;
-      console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -21,7 +20,6 @@ export const fetchRegister = createAsyncThunk(
   async (params, { rejectWithValue }) => {
     try {
       const response = await axios.post('/auth/registration', params);
-      console.log(response);
       if (response.statusText !== 'OK') {
         throw new Error('Server Error');
       }
