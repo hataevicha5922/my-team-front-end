@@ -25,6 +25,9 @@ export const Header = () => {
           <div className={styles.buttons}>
             {isAuth ? (
               <>
+                <Link to="/createTeam">
+                  <Button variant="contained">Create Team</Button>
+                </Link>
                 <Link to="/home">
                   <Button variant="contained">My Team</Button>
                 </Link>
