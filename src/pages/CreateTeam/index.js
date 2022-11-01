@@ -74,7 +74,7 @@ export const CreateTeam = () => {
           label="Owner"
           fullWidth
         />
-        <TextField
+        {/* <TextField
           className={styles.field}
           type="file"
           error={Boolean(errors.teamLogo ? `${errors.teamLogo.message}` : null)}
@@ -82,7 +82,7 @@ export const CreateTeam = () => {
           {...register('teamLogo', { required: 'teamLogo is required' })}
           label="teamLogo"
           fullWidth
-        />
+        /> */}
         <Button
           disabled={!isValid}
           type="submit"
