@@ -17,15 +17,15 @@ export const CreateTeam = () => {
     formState: { errors, isValid },
   } = useForm({
     defaultValues: {
-      teamName: '',
-      city: '',
-      owner: '',
+      playerName: '',
+      position: '',
+      status: '',
       teamLogo: '',
     },
     mode: 'onChange',
   });
   const onSubmit = async (values) => {
-    const { teamName, city, owner } = values;
+    const { playerName, position, status } = values;
     // const formLogo = new FormData();
     // formLogo.append('teamLName', teamName);
     // formLogo.append('city', city);
@@ -34,9 +34,9 @@ export const CreateTeam = () => {
 
     await dispatch(
       fetchCreateTeam({
-        teamName,
-        city,
-        owner,
+        playerName,
+        position,
+        status,
       })
     );
   };
@@ -45,33 +45,35 @@ export const CreateTeam = () => {
     <Paper classes={{ root: styles.root }}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Typography classes={{ root: styles.title }} variant="h5">
-          Create Team
+          Create Player
         </Typography>
         <TextField
           className={styles.field}
           type="text"
-          error={Boolean(errors.teamName ? `${errors.teamName.message}` : null)}
-          helperText={errors.teamName ? `${errors.teamName.message}` : null}
-          {...register('teamName', { required: 'TeamName is required' })}
-          label="Team Name"
+          error={Boolean(
+            errors.playerName ? `${errors.playerName.message}` : null
+          )}
+          helperText={errors.playerName ? `${errors.playerName.message}` : null}
+          {...register('playerName', { required: 'Player Name is required' })}
+          label="Player Name"
           fullWidth
         />
         <TextField
           className={styles.field}
           type="text"
-          error={Boolean(errors.city ? `${errors.city.message}` : null)}
-          helperText={errors.city ? `${errors.city.message}` : null}
-          {...register('city', { required: 'City is required' })}
-          label="City"
+          error={Boolean(errors.position ? `${errors.position.message}` : null)}
+          helperText={errors.position ? `${errors.position.message}` : null}
+          {...register('position', { required: 'Position is required' })}
+          label="Position"
           fullWidth
         />
         <TextField
           className={styles.field}
           type="text"
-          error={Boolean(errors.owner ? `${errors.owner.message}` : null)}
-          helperText={errors.owner ? `${errors.owner.message}` : null}
-          {...register('owner', { required: 'Owner is required' })}
-          label="Owner"
+          error={Boolean(errors.status ? `${errors.status.message}` : null)}
+          helperText={errors.status ? `${errors.status.message}` : null}
+          {...register('status', { required: 'Status is required' })}
+          label="Status"
           fullWidth
         />
         {/* <TextField
@@ -90,7 +92,7 @@ export const CreateTeam = () => {
           variant="contained"
           fullWidth
         >
-          Create
+          Create Player
         </Button>
       </form>
     </Paper>
