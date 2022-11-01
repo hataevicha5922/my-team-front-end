@@ -25,19 +25,18 @@ export const CreateTeam = () => {
     mode: 'onChange',
   });
   const onSubmit = async (values) => {
-    const { teamName, city, owner, teamLogo } = values;
-    const formLogo = new FormData();
-    formLogo.append('teamLName', teamName);
-    formLogo.append('city', city);
-    formLogo.append('owner', owner);
-    formLogo.append('teamLogo', teamLogo);
+    const { teamName, city, owner } = values;
+    // const formLogo = new FormData();
+    // formLogo.append('teamLName', teamName);
+    // formLogo.append('city', city);
+    // formLogo.append('owner', owner);
+    // formLogo.append('teamLogo', teamLogo);
 
     await dispatch(
       fetchCreateTeam({
         teamName,
         city,
         owner,
-        formLogo,
       })
     );
   };
@@ -91,7 +90,7 @@ export const CreateTeam = () => {
           variant="contained"
           fullWidth
         >
-          Registration
+          Create
         </Button>
       </form>
     </Paper>
